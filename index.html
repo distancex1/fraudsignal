@@ -554,15 +554,66 @@
 
         /* Mobile */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .grid { grid-template-columns: 1fr; }
+            /* Container */
+            .container { padding: 0 1.25rem; }
+
+            /* Hero */
+            .hero { padding: 5rem 0 3.5rem 0; }
+            .hero h1 { font-size: 2rem; line-height: 1.1; }
+            .hero h1 br { display: none; }
+            .hero p { font-size: 1.05rem; margin-bottom: 1.5rem; }
+
+            /* Trust bar */
+            .trust-bar-divider { display: none; }
+            .trust-bar-label { width: 100%; margin-bottom: 0.25rem; }
+            .trust-bar-inner { gap: 1rem; }
+            .trust-bar-logos { gap: 1.25rem; }
+            .trust-bar-logos span { font-size: 0.85rem; }
+
+            /* Section headings */
+            .section-header h2 { font-size: 1.75rem; }
+            .section-header { margin-bottom: 2.5rem; }
+
+            /* Who We Help */
+            .who-we-help { padding: 4rem 0; }
             .who-we-help .grid-2 { grid-template-columns: 1fr; }
-            .service-item, .service-item:nth-child(even) { flex-direction: column; }
-            .case-stats { flex-direction: column; gap: 2rem; }
-            .engagement-grid { grid-template-columns: 1fr; }
-            .trust-bar-inner { gap: 1.5rem; }
-            .trust-bar-logos { gap: 1.5rem; }
-            .case-study { padding: 3rem 2rem; }
+            .who-card { padding: 1.75rem; }
+
+            /* Problems */
+            .problems { padding: 4rem 0; }
+            .grid { grid-template-columns: 1fr; }
+            .card { padding: 1.75rem; }
+
+            /* Process */
+            .process-section { padding: 5rem 0 !important; }
+            .process-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+
+            /* Services */
+            .services { padding: 4rem 0; }
+            .service-item,
+            .service-item:nth-child(even) { flex-direction: column; gap: 2rem; margin-bottom: 3.5rem; }
+            .service-content h3 { font-size: 1.5rem; }
+            .service-visual { padding: 2rem 1.5rem; font-size: 0.8rem; }
+
+            /* Case study */
+            .case-study { padding: 2rem 1.25rem; }
+            .case-study-inner { padding: 0 !important; }
+            .case-stats { flex-direction: column; gap: 1.75rem; }
+            .stat h4 { font-size: 2rem; }
+
+            /* Engagement */
+            .engagement-section { padding: 4rem 0; }
+            .engagement-grid { grid-template-columns: 1fr; margin-top: 2.5rem; }
+            .engagement-card { padding: 2rem; }
+
+            /* CTA */
+            .cta-section { padding: 5rem 0; }
+            .cta-section h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+
+            /* Footer */
+            footer { padding: 3rem 0; }
+            .footer-content { flex-direction: column; gap: 1.5rem; }
+            .footer-content > div:last-child { text-align: left !important; }
         }
     </style>
 </head>
@@ -688,14 +739,14 @@
     </section>
 
     <!-- Process -->
-    <section style="padding: 10rem 0; border-bottom: 1px solid var(--card-border); position: relative;">
+    <section class="process-section" style="padding: 10rem 0; border-bottom: 1px solid var(--card-border); position: relative;">
         <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); z-index: -1;"></div>
 
         <div class="container">
             <div class="section-header" style="text-align: center; margin-bottom: 5rem;">
                 <h2>How we secure your growth</h2>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; text-align: center;">
+            <div class="process-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; text-align: center;">
                 <!-- Step 1 -->
                 <div style="position: relative;">
                     <div style="font-size: 6rem; color: rgba(255,255,255,0.03); font-weight: 800; line-height: 1; margin-bottom: -2rem; position: relative; z-index: -1;">01</div>
@@ -831,7 +882,7 @@
     <!-- Case Study 1: EdTech -->
     <section class="container">
         <div class="case-study">
-            <div style="padding: 0 3rem;">
+            <div class="case-study-inner" style="padding: 0 3rem;">
                 <h4 style="color:var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem;">Series C EdTech Platform</h4>
                 <h2>From Processor Flag to Clear Standing</h2>
                 <p style="color: var(--text-muted); max-width: 700px; margin-top: 1rem; line-height: 1.8;">
