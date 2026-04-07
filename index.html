@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FraudSignal | Fraud, Risk & Compliance Consulting for SaaS</title>
+    <meta name="description" content="Expert fraud prevention, risk operations, and compliance consulting for SaaS companies and ISVs building embedded payment programs.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0A2540;
+            --bg-darker: #051829;
+            --accent: #00D4FF;
+            --accent-glow: rgba(0, 212, 255, 0.15);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --spacing-container: 1100px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        ::selection { background: var(--accent); color: var(--bg-darker); }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(0, 212, 255, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 90% 60%, rgba(0, 212, 255, 0.03) 0%, transparent 40%);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.03em;
+        }
+
+        h1 { font-weight: 700; }
+
+        .eyebrow {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        a { text-decoration: none; color: inherit; transition: color 0.2s; }
+
+        .container {
+            max-width: var(--spacing-container);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-accent { color: var(--accent); }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg-darker);
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+            background: #33ddff;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: var(--accent);
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.05);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+        }
+
+        /* Header */
+        header {
+            padding: 1.25rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 37, 64, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.03em;
+            color: #fff;
+        }
+
+        .logo svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--accent);
+            filter: drop-shadow(0 0 8px rgba(0,212,255,0.5));
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 0 7rem 0;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            max-width: 820px;
+            margin-bottom: 1.75rem;
+            background: linear-gradient(180deg, #FFFFFF 20%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.05;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 620px;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--bg-darker);
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1.75rem 0;
+        }
+
+        .trust-bar-inner {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-bar-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .trust-bar-divider {
+            width: 1px;
+            height: 1.25rem;
+            background: var(--card-border);
+            flex-shrink: 0;
+        }
+
+        .trust-bar-logos {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-bar-logos span {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: -0.02em;
+            transition: color 0.2s;
+        }
+
+        .trust-bar-logos span:hover {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        /* Who We Help */
+        .who-we-help {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .who-we-help .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .who-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .who-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+        }
+
+        .who-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .who-card:hover::after { opacity: 1; }
+
+        .who-card-icon {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
+        }
+
+        .who-card h3 { font-size: 1.35rem; margin-bottom: 0.75rem; }
+
+        .who-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
+
+        .who-card ul { list-style: none; margin-top: 1rem; }
+
+        .who-card li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .who-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Problems Section */
+        .problems {
+            padding: 8rem 0;
+            background: var(--bg-darker);
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .problems::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.3;
+        }
+
+        .section-header { margin-bottom: 4rem; }
+
+        .section-header h2 { font-size: 2.75rem; margin-bottom: 1rem; }
+
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .card:hover::after { opacity: 1; }
+
+        .card-icon { font-size: 2rem; margin-bottom: 1.5rem; filter: drop-shadow(0 0 15px rgba(255,255,255,0.1)); }
+
+        .card h3 { margin-bottom: 1rem; font-size: 1.35rem; }
+
+        .card p { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
+
+        /* Services Section */
+        .services { padding: 8rem 0; }
+
+        .service-item {
+            display: flex;
+            gap: 5rem;
+            margin-bottom: 6rem;
+            align-items: center;
+        }
+
+        .service-item:nth-child(even) { flex-direction: row-reverse; }
+
+        .service-content { flex: 1; }
+
+        .service-visual {
+            flex: 1;
+            background: #020d17;
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 1px solid var(--card-border);
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #d1d9e0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .service-visual::before {
+            content: '•••';
+            position: absolute;
+            top: 0.75rem; left: 1rem;
+            letter-spacing: 2px;
+            color: #334;
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        .code-block { color: #d2a8ff; }
+        .code-val   { color: #79c0ff; }
+        .code-ok    { color: #3fb950; }
+        .code-warn  { color: #ffd700; }
+        .code-err   { color: #ff6b6b; }
+
+        .service-content h3 { font-size: 2rem; margin-bottom: 1rem; }
+
+        .service-content ul { list-style: none; margin-top: 1.5rem; }
+
+        .service-content li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .service-content li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Case Study */
+        .case-study {
+            padding: 6rem;
+            background: radial-gradient(circle at 100% 0%, #0c2d4d 0%, #051829 100%);
+            border-radius: 20px;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
+        }
+
+        .case-stats {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat { position: relative; }
+
+        .stat h4 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
+            letter-spacing: -0.05em;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .stat p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .case-attribution {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Engagement Models */
+        .engagement-section {
+            padding: 8rem 0;
+            background: var(--bg-darker);
+            border-top: 1px solid var(--card-border);
+        }
+
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .engagement-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .engagement-card.featured {
+            border-color: rgba(0, 212, 255, 0.25);
+            background: rgba(0, 212, 255, 0.03);
+        }
+
+        .engagement-card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .engagement-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .engagement-card > p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.75rem;
+        }
+
+        .engagement-card ul {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            flex: 1;
+        }
+
+        .engagement-card li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .engagement-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .engagement-pricing {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--card-border);
+            opacity: 0.7;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 10rem 0;
+            position: relative;
+        }
+
+        .cta-section h2 { font-size: 3.5rem; margin-bottom: 2rem; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            background: var(--bg-darker);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .grid { grid-template-columns: 1fr; }
+            .who-we-help .grid-2 { grid-template-columns: 1fr; }
+            .service-item, .service-item:nth-child(even) { flex-direction: column; }
+            .case-stats { flex-direction: column; gap: 2rem; }
+            .engagement-grid { grid-template-columns: 1fr; }
+            .trust-bar-inner { gap: 1.5rem; }
+            .trust-bar-logos { gap: 1.5rem; }
+            .case-study { padding: 3rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/>
+                    </svg>
+                    FraudSignal
+                </div>
+                <a href="mailto:hello@fraudsignal.io" class="btn-outline" style="padding: 8px 16px;">Book a Call</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <!-- Change 1: second line updated -->
+            <h1>Fraud and compliance exposure grows faster than your team.<br><span class="text-accent">We help you get ahead of it.</span></h1>
+            <p>Fraud prevention, risk operations & compliance consulting for SaaS companies and ISVs scaling embedded payment programs.</p>
+            <!-- Change 2: founder credibility line -->
+            <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 620px; margin-top: -1.5rem; margin-bottom: 2rem; font-style: italic;">Founded by operators who built and scaled fraud, risk, and payments functions inside hypergrowth SaaS and embedded payments businesses.</p>
+
+            <!-- Change 3: tightened bullets -->
+            <ul style="list-style: none; margin-bottom: 2.5rem; color: var(--text-muted);">
+                <li style="margin-bottom: 0.75rem; display: flex; align-items: start;">
+                    <span style="color: var(--accent); margin-right: 10px; font-size: 1.1rem;">➤</span>
+                    <span>Custom fraud rules and monitoring tuned to your payment stack</span>
+                </li>
+                <li style="margin-bottom: 0.75rem; display: flex; align-items: start;">
+                    <span style="color: var(--accent); margin-right: 10px; font-size: 1.1rem;">➤</span>
+                    <span>Embedded ownership of KYC, compliance, incident response, and risk operations</span>
+                </li>
+            </ul>
+
+            <!-- Change 4: CTA text -->
+            <a href="mailto:hello@fraudsignal.io" class="btn">Request a Risk Review</a>
+        </div>
+    </section>
+
+    <!-- Processor Trust Bar -->
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-bar-inner">
+                <!-- Change 5: trust bar label -->
+                <span class="trust-bar-label">Experience across teams using</span>
+                <div class="trust-bar-divider"></div>
+                <div class="trust-bar-logos">
+                    <span>Stripe</span>
+                    <span>Adyen</span>
+                    <span>Checkout.com</span>
+                    <span>Braintree</span>
+                    <span>Worldpay</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Who We Help -->
+    <section class="who-we-help">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">Who We Work With</span>
+                <h2>Built for SaaS Companies Running Payments</h2>
+            </div>
+            <div class="grid-2">
+                <div class="who-card">
+                    <div class="who-card-icon">🔌</div>
+                    <h3>ISVs & Embedded Payment Platforms</h3>
+                    <p>When you embed payments into your software, you inherit fraud and compliance liability for every transaction your merchants run. Most ISVs don't have the in-house risk function to manage it.</p>
+                    <ul>
+                        <li>Sub-merchant underwriting & onboarding risk</li>
+                        <li>Processor compliance obligations (PCI, AML)</li>
+                        <li>Liability exposure from merchant fraud losses</li>
+                    </ul>
+                </div>
+                <div class="who-card">
+                    <div class="who-card-icon">🏪</div>
+                    <h3>SaaS Marketplaces & Multi-Merchant Platforms</h3>
+                    <p>Operating a marketplace means managing fraud risk at scale, across hundreds or thousands of sellers. A single bad actor can trigger processor account reviews and damage your entire portfolio standing.</p>
+                    <ul>
+                        <li>Portfolio-level fraud monitoring & alerting</li>
+                        <li>Chargeback liability and dispute management</li>
+                        <li>KYC flow design for high-volume merchant onboarding</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Grid -->
+    <section class="problems">
+        <div class="container">
+            <div class="section-header">
+                <h2>What breaks when volume spikes</h2>
+                <p>Scaling revenue often breaks default payment configurations.</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Account Reviews & Holds</h3>
+                    <p>If risk flags trigger, processors can pause payouts fast. We align your risk logic with processor risk models to keep cash flowing.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤖</div>
+                    <h3>Card Testing Attacks</h3>
+                    <p>Thousands of small authorizations from bots trigger risk flags and drive up processing costs ($0.30/attempt adds up fast).</p>
+                </div>
+                <!-- Change 6: KYC card paragraph -->
+                <div class="card">
+                    <div class="card-icon">⚖️</div>
+                    <h3>Hidden Liability & KYC Risks</h3>
+                    <p>Onboarding the wrong merchant can create losses, processor scrutiny, and portfolio risk. We build defensible KYC and underwriting flows that catch problems before they scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section style="padding: 10rem 0; border-bottom: 1px solid var(--card-border); position: relative;">
+        <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); z-index: -1;"></div>
+
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 5rem;">
+                <h2>How we secure your growth</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; text-align: center;">
+                <!-- Step 1 -->
+                <div style="position: relative;">
+                    <div style="font-size: 6rem; color: rgba(255,255,255,0.03); font-weight: 800; line-height: 1; margin-bottom: -2rem; position: relative; z-index: -1;">01</div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Audit & Architecture</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">Deep dive into your payment stack. We map out leaks, high-risk vectors, and friction points in your user journey.</p>
+                </div>
+                <!-- Step 2 -->
+                <div style="position: relative;">
+                    <div style="font-size: 6rem; color: rgba(255,255,255,0.03); font-weight: 800; line-height: 1; margin-bottom: -2rem; position: relative; z-index: -1;">02</div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Remediation & Ops</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">We deploy custom fraud rules across your payment stack, monitoring dashboards, and dispute defense SOPs.</p>
+                </div>
+                <!-- Step 3 -->
+                <div style="position: relative;">
+                    <div style="font-size: 6rem; color: rgba(255,255,255,0.03); font-weight: 800; line-height: 1; margin-bottom: -2rem; position: relative; z-index: -1;">03</div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Fractional Leadership</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">We stay embedded with your team — managing incidents, processor relationships, and risk as volume scales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <div class="container">
+            <!-- Change 7: section heading -->
+            <div class="section-header">
+                <h2>What We Build</h2>
+            </div>
+
+            <!-- Service 1 -->
+            <div class="service-item">
+                <div class="service-content">
+                    <h3>Adaptive Fraud Rule Architecture</h3>
+                    <p>We architect custom fraud logic that blocks attacks without killing conversion. Processor-agnostic expertise across Stripe Radar, Adyen RevenueProtect, Checkout.com Risk, and custom internal tooling.</p>
+                    <ul>
+                        <li>Platform-agnostic rule sets (Stripe, Adyen, Checkout.com, and others)</li>
+                        <li>Card security strategies (3DS, AVS, CVC)</li>
+                        <li>Precision allowlist/blocklist management</li>
+                    </ul>
+                </div>
+                <div class="service-visual">
+                    <span class="code-block">BLOCK IF</span> :block_level: = 'high'<br>
+                    <span class="code-block">AND</span> :ip_country: != :card_country:<br>
+                    <span class="code-block">AND</span> :amount_in_usd: > <span class="code-val">500.00</span><br>
+                    <br>
+                    <span class="code-block">REVIEW IF</span> :cvc_check: != 'pass'
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-item">
+                <div class="service-content">
+                    <h3>Merchant Risk Monitoring</h3>
+                    <p>For marketplaces and platforms, we build monitoring logic that tracks sub-merchant health across your portfolio and flags risk before it becomes liability.</p>
+                    <ul>
+                        <li>SQL queries for real-time risk dashboards</li>
+                        <li>Slack integrations for instant fraud alerts</li>
+                        <li>Underwriting criteria & KYC flow optimization</li>
+                    </ul>
+                </div>
+                <div class="service-visual">
+                    <span class="code-block">SELECT</span> merchant_id, <span class="code-block">COUNT</span>(*) as disputes<br>
+                    <span class="code-block">FROM</span> payments<br>
+                    <span class="code-block">WHERE</span> status = 'disputed'<br>
+                    <span class="code-block">GROUP BY</span> merchant_id<br>
+                    <span class="code-block">HAVING</span> disputes > <span class="code-val">5</span>;
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-item">
+                <div class="service-content">
+                    <h3>Operational Playbooks & Incident Response</h3>
+                    <!-- Change 8: service 3 paragraph -->
+                    <p>Without documented protocols, every fraud incident becomes improvised. We build clear operating playbooks for incident response, disputes, and decisioning so your team can move quickly without making risk worse.</p>
+                    <ul>
+                        <li>Actionable Incident Response Plans for attacks</li>
+                        <li>High-win-rate Dispute Evidence templates</li>
+                        <li>Decision trees for Refund vs. Chargeback logic</li>
+                    </ul>
+                </div>
+                <div class="service-visual">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.5;">
+                        <span style="color: #ff6b6b; font-weight: bold;">[ALERT]</span> BIN Attack Detected<br>
+                        <span style="color: var(--text-muted);">├──</span> 1. Activate "High Friction" Rule Set<br>
+                        <span style="color: var(--text-muted);">├──</span> 2. Isolate BIN prefix: <span style="color: var(--accent);">411111</span><br>
+                        <span style="color: var(--text-muted);">└──</span> 3. <span style="color: #ffd700;">ACTION:</span> Batch Refund (&lt; 6 hrs)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 4 — Compliance & Regulatory Readiness -->
+            <div class="service-item">
+                <div class="service-content">
+                    <h3>Compliance & Regulatory Readiness</h3>
+                    <p>Embedding payments triggers real regulatory obligations. We build the compliance infrastructure — policies, frameworks, and documentation — so you stay audit-ready and processor-approved as you scale.</p>
+                    <ul>
+                        <li>PCI DSS scope reduction & audit readiness</li>
+                        <li>AML/BSA program design and policy review</li>
+                        <li>KYC compliance frameworks & merchant onboarding documentation</li>
+                        <li>Regulatory risk assessment for new payment markets</li>
+                    </ul>
+                </div>
+                <div class="service-visual">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8;">
+                        <span class="code-ok">✔</span> PCI DSS SAQ-D — <span class="code-val">Scope Reduced</span><br>
+                        <span class="code-ok">✔</span> AML Policy — <span class="code-val">Reviewed &amp; Signed</span><br>
+                        <span class="code-ok">✔</span> KYC Flow — <span class="code-val">Documented</span><br>
+                        <span class="code-warn">⚠</span> Merchant TOS — <span style="color: #ffd700;">Needs Update</span><br>
+                        <span class="code-err">✘</span> BSA Program — <span style="color: #ff6b6b;">Not Implemented</span><br>
+                        <br>
+                        <span style="color: var(--text-muted);">// 2 items require immediate action</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section style="padding: 0 0 2rem 0;">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 1.5rem;">
+                <span class="eyebrow">Case Studies</span>
+                <h2>What the work actually looks like</h2>
+            </div>
+            <!-- Change 9: trust note under heading -->
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic;">Representative examples based on real operator work. Company details have been anonymized.</p>
+        </div>
+    </section>
+
+    <!-- Case Study 1: EdTech -->
+    <section class="container">
+        <div class="case-study">
+            <div style="padding: 0 3rem;">
+                <h4 style="color:var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem;">Series C EdTech Platform</h4>
+                <h2>From Processor Flag to Clear Standing</h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin-top: 1rem; line-height: 1.8;">
+                    <!-- Change 10: opening sentence -->
+                    A Series C EdTech platform came to us after a $200,000 fraud event and rising processor pressure.<br><br>
+                    They had 15,000+ sub-merchants processing tuition payments through their platform and hadn't properly KYC'd a single one. Fraudulent sub-merchants slipped through onboarding, ran chargebacks the platform was fully liable for, and triggered a processor flag for chargeback ratio violations. They had no internal risk function. No playbook. No one who owned it.<br><br>
+                    In 30 days, we built one.<br><br>
+                    We deployed a full sub-merchant underwriting framework, designed the KYC flow their onboarding team now runs on every new sub-merchant, and stood up a real-time risk monitoring dashboard their ops team uses daily. We trained their internal team on dispute response and chargeback defense and stayed on as their fractional Head of Risk to own incidents, processor relationships, and ongoing monitoring.<br><br>
+                    The chargeback flag was cleared. The losses stopped. They now have the infrastructure to scale without repeating it.
+                </p>
+
+                <div class="case-stats">
+                    <div class="stat">
+                        <h4 style="font-size: 2.5rem;">$1B+</h4>
+                        <p>Annual volume secured</p>
+                    </div>
+                    <div class="stat">
+                        <h4 style="font-size: 2.5rem;">$200k+</h4>
+                        <p>Fraudulent losses stopped</p>
+                    </div>
+                    <div class="stat">
+                        <h4 style="font-size: 2.5rem;">30 days</h4>
+                        <p>Playbook deployed & team trained</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engagement Models -->
+    <section class="engagement-section">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2>How We Engage</h2>
+                <!-- Change 11: engagement intro -->
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 1rem;">Two ways to work with FraudSignal, depending on your stage, team, and risk exposure.</p>
+            </div>
+
+            <div class="engagement-grid">
+
+                <!-- Card 1: Risk Audit -->
+                <div class="engagement-card">
+                    <div class="engagement-card-label">One-Time Engagement</div>
+                    <h3>Risk Audit</h3>
+                    <p>A focused diagnostic of your payment stack, fraud exposure, and compliance posture. Delivered as a prioritized action plan with immediate quick-wins and a 90-day roadmap.</p>
+                    <ul>
+                        <li>Payment stack review with prioritized fraud & compliance risk findings</li>
+                        <li>Custom rule recommendations mapped to your processor</li>
+                        <li>Written remediation roadmap: quick-wins and 90-day action plan</li>
+                    </ul>
+                    <a href="mailto:hello@fraudsignal.io" class="btn-outline" style="text-align: center; display: block;">Book an Audit</a>
+                </div>
+
+                <!-- Card 2: Fractional Head of Risk -->
+                <div class="engagement-card featured">
+                    <div class="engagement-card-label">Ongoing Retainer</div>
+                    <h3>Fractional Head of Risk</h3>
+                    <p>We become your embedded risk function — managing fraud, compliance, and processor relationships on an ongoing basis so you can scale without hiring a full team.</p>
+                    <ul>
+                        <li>Fraud rule management, continuous tuning & live incident response</li>
+                        <li>Monthly risk reporting, processor relationship management & compliance monitoring</li>
+                        <li>Embedded support for KYC design, dispute strategy & audit readiness</li>
+                    </ul>
+                    <!-- Change 12: retainer CTA -->
+                    <a href="mailto:hello@fraudsignal.io" class="btn" style="text-align: center; display: block;">Discuss a Retainer</a>
+                </div>
+
+            </div>
+
+            <p class="engagement-pricing">Pricing scoped to your transaction volume and team size.</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>Ready to secure your growth?</h2>
+            <a href="mailto:hello@fraudsignal.io" class="btn" style="font-size: 1.2rem; padding: 16px 32px;">Request a Risk Review</a>
+            <!-- Change 13: line under CTA button -->
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1.5rem;">Tell us your processor, payment volume, and where risk is showing up.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="logo" style="margin-bottom: 1rem;">FraudSignal</div>
+                    <!-- Change 14: footer tagline -->
+                    <p>Risk leadership for platforms that run payments.</p>
+                </div>
+                <div style="text-align: right;">
+                    <p>&copy; 2026 FraudSignal. All rights reserved. &nbsp;·&nbsp; <a href="privacy.html" style="color: var(--text-muted); transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">Privacy Policy</a> &nbsp;·&nbsp; LinkedIn</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
