@@ -250,9 +250,16 @@
         .who-card:hover::after { opacity: 1; }
 
         .who-card-icon {
-            font-size: 2rem;
             margin-bottom: 1.25rem;
             filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
+        }
+
+        .who-card-icon svg, .card-icon svg {
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .who-card h3 { font-size: 1.35rem; margin-bottom: 0.75rem; }
@@ -331,7 +338,7 @@
         }
         .card:hover::after { opacity: 1; }
 
-        .card-icon { font-size: 2rem; margin-bottom: 1.5rem; filter: drop-shadow(0 0 15px rgba(255,255,255,0.1)); }
+        .card-icon { margin-bottom: 1.5rem; filter: drop-shadow(0 0 15px rgba(255,255,255,0.1)); }
 
         .card h3 { margin-bottom: 1rem; font-size: 1.35rem; }
 
@@ -537,6 +544,69 @@
 
         .cta-section h2 { font-size: 3.5rem; margin-bottom: 2rem; }
 
+        /* Contact Form */
+        .contact-form {
+            max-width: 640px;
+            margin: 3rem auto 0;
+            text-align: left;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 3rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .form-field { display: flex; flex-direction: column; }
+
+        .form-field.full { grid-column: 1 / -1; }
+
+        .form-field label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-field input,
+        .form-field textarea {
+            background: var(--bg-darker);
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-field textarea { resize: vertical; min-height: 110px; }
+
+        .contact-form .btn { margin-top: 1.5rem; width: 100%; border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
+
+        .form-status {
+            margin-top: 1.25rem;
+            font-size: 0.95rem;
+            text-align: center;
+            display: none;
+        }
+
+        .form-status.success { display: block; color: var(--accent); }
+        .form-status.error { display: block; color: #ff6b6b; }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--card-border);
@@ -609,6 +679,8 @@
             /* CTA */
             .cta-section { padding: 5rem 0; }
             .cta-section h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+            .contact-form { padding: 1.75rem; }
+            .form-grid { grid-template-columns: 1fr; }
 
             /* Footer */
             footer { padding: 3rem 0; }
@@ -629,7 +701,7 @@
                     </svg>
                     FraudSignal
                 </div>
-                <a href="mailto:hello@fraudsignal.io" class="btn-outline" style="padding: 8px 16px;">Book a Call</a>
+                <a href="mailto:david@fraudsignal.io?subject=Risk%20Review%20Request&body=Company%3A%0AProcessor%3A%0AMonthly%20payment%20volume%3A%0AWhere%20risk%20is%20showing%20up%3A%0A" class="btn-outline" style="padding: 8px 16px;">Request a Risk Review</a>
             </nav>
         </div>
     </header>
@@ -638,10 +710,10 @@
     <section class="hero">
         <div class="container">
             <!-- Change 1: second line updated -->
-            <h1>Fraud and compliance exposure grows faster than your team.<br><span class="text-accent">We help you get ahead of it.</span></h1>
+            <h1>Fraud and compliance exposure grows faster than your team.<br><span class="text-accent">I help you get ahead of it.</span></h1>
             <p>Fraud prevention, risk operations & compliance consulting for SaaS companies and ISVs scaling embedded payment programs.</p>
             <!-- Change 2: founder credibility line -->
-            <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 620px; margin-top: -1.5rem; margin-bottom: 2rem; font-style: italic;">Founded by operators who built and scaled fraud, risk, and payments functions inside hypergrowth SaaS and embedded payments businesses.</p>
+            <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 620px; margin-top: -1.5rem; margin-bottom: 2rem; font-style: italic;">I'm David. Over 15+ years I've built fraud operations from the ground up at hypergrowth fintech and embedded-payments companies, and directed global risk protecting over $1B in annual payment volume.</p>
 
             <!-- Change 3: tightened bullets -->
             <ul style="list-style: none; margin-bottom: 2.5rem; color: var(--text-muted);">
@@ -656,7 +728,7 @@
             </ul>
 
             <!-- Change 4: CTA text -->
-            <a href="mailto:hello@fraudsignal.io" class="btn">Request a Risk Review</a>
+            <a href="mailto:david@fraudsignal.io?subject=Risk%20Review%20Request&body=Company%3A%0AProcessor%3A%0AMonthly%20payment%20volume%3A%0AWhere%20risk%20is%20showing%20up%3A%0A" class="btn">Request a Risk Review</a>
         </div>
     </section>
 
@@ -664,15 +736,17 @@
     <div class="trust-bar">
         <div class="container">
             <div class="trust-bar-inner">
-                <!-- Change 5: trust bar label -->
-                <span class="trust-bar-label">Experience across teams using</span>
-                <div class="trust-bar-divider"></div>
+                <span class="trust-bar-label">Processors & gateways</span>
                 <div class="trust-bar-logos">
                     <span>Stripe</span>
                     <span>Adyen</span>
-                    <span>Checkout.com</span>
-                    <span>Braintree</span>
-                    <span>Worldpay</span>
+                </div>
+                <div class="trust-bar-divider"></div>
+                <span class="trust-bar-label">Bank rails & frameworks</span>
+                <div class="trust-bar-logos">
+                    <span>ACH</span>
+                    <span>NACHA</span>
+                    <span>Plaid</span>
                 </div>
             </div>
         </div>
@@ -682,12 +756,12 @@
     <section class="who-we-help">
         <div class="container">
             <div class="section-header">
-                <span class="eyebrow">Who We Work With</span>
+                <span class="eyebrow">Who I Work With</span>
                 <h2>Built for SaaS Companies Running Payments</h2>
             </div>
             <div class="grid-2">
                 <div class="who-card">
-                    <div class="who-card-icon">🔌</div>
+                    <div class="who-card-icon"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></div>
                     <h3>ISVs & Embedded Payment Platforms</h3>
                     <p>When you embed payments into your software, you inherit fraud and compliance liability for every transaction your merchants run. Most ISVs don't have the in-house risk function to manage it.</p>
                     <ul>
@@ -697,7 +771,7 @@
                     </ul>
                 </div>
                 <div class="who-card">
-                    <div class="who-card-icon">🏪</div>
+                    <div class="who-card-icon"><svg width="32" height="32" viewBox="0 0 24 24"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></div>
                     <h3>SaaS Marketplaces & Multi-Merchant Platforms</h3>
                     <p>Operating a marketplace means managing fraud risk at scale, across hundreds or thousands of sellers. A single bad actor can trigger processor account reviews and damage your entire portfolio standing.</p>
                     <ul>
@@ -719,20 +793,20 @@
             </div>
             <div class="grid">
                 <div class="card">
-                    <div class="card-icon">⚡</div>
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
                     <h3>Account Reviews & Holds</h3>
-                    <p>If risk flags trigger, processors can pause payouts fast. We align your risk logic with processor risk models to keep cash flowing.</p>
+                    <p>If risk flags trigger, processors can pause payouts fast. I align your risk logic with processor risk models to keep cash flowing.</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">🤖</div>
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
                     <h3>Card Testing Attacks</h3>
                     <p>Thousands of small authorizations from bots trigger risk flags and drive up processing costs ($0.30/attempt adds up fast).</p>
                 </div>
                 <!-- Change 6: KYC card paragraph -->
                 <div class="card">
-                    <div class="card-icon">⚖️</div>
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
                     <h3>Hidden Liability & KYC Risks</h3>
-                    <p>Onboarding the wrong merchant can create losses, processor scrutiny, and portfolio risk. We build defensible KYC and underwriting flows that catch problems before they scale.</p>
+                    <p>Onboarding the wrong merchant can create losses, processor scrutiny, and portfolio risk. I build defensible KYC and underwriting flows that catch problems before they scale.</p>
                 </div>
             </div>
         </div>
@@ -744,26 +818,26 @@
 
         <div class="container">
             <div class="section-header" style="text-align: center; margin-bottom: 5rem;">
-                <h2>How we secure your growth</h2>
+                <h2>How I secure your growth</h2>
             </div>
             <div class="process-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; text-align: center;">
                 <!-- Step 1 -->
                 <div style="position: relative;">
                     <div style="font-size: 6rem; color: rgba(255,255,255,0.03); font-weight: 800; line-height: 1; margin-bottom: -2rem; position: relative; z-index: -1;">01</div>
                     <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Audit & Architecture</h3>
-                    <p style="color: var(--text-muted); font-size: 1.05rem;">Deep dive into your payment stack. We map out leaks, high-risk vectors, and friction points in your user journey.</p>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">Deep dive into your payment stack. I map out leaks, high-risk vectors, and friction points in your user journey.</p>
                 </div>
                 <!-- Step 2 -->
                 <div style="position: relative;">
                     <div style="font-size: 6rem; color: rgba(255,255,255,0.03); font-weight: 800; line-height: 1; margin-bottom: -2rem; position: relative; z-index: -1;">02</div>
                     <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Remediation & Ops</h3>
-                    <p style="color: var(--text-muted); font-size: 1.05rem;">We deploy custom fraud rules across your payment stack, monitoring dashboards, and dispute defense SOPs.</p>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">I deploy custom fraud rules across your payment stack, monitoring dashboards, and dispute defense SOPs.</p>
                 </div>
                 <!-- Step 3 -->
                 <div style="position: relative;">
                     <div style="font-size: 6rem; color: rgba(255,255,255,0.03); font-weight: 800; line-height: 1; margin-bottom: -2rem; position: relative; z-index: -1;">03</div>
                     <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Fractional Leadership</h3>
-                    <p style="color: var(--text-muted); font-size: 1.05rem;">We stay embedded with your team — managing incidents, processor relationships, and risk as volume scales.</p>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">I stay embedded with your team, managing incidents, processor relationships, and risk as volume scales.</p>
                 </div>
             </div>
         </div>
@@ -774,14 +848,14 @@
         <div class="container">
             <!-- Change 7: section heading -->
             <div class="section-header">
-                <h2>What We Build</h2>
+                <h2>What I Build</h2>
             </div>
 
             <!-- Service 1 -->
             <div class="service-item">
                 <div class="service-content">
                     <h3>Adaptive Fraud Rule Architecture</h3>
-                    <p>We architect custom fraud logic that blocks attacks without killing conversion. Processor-agnostic expertise across Stripe Radar, Adyen RevenueProtect, Checkout.com Risk, and custom internal tooling.</p>
+                    <p>I architect custom fraud logic that blocks attacks without killing conversion. Processor-agnostic expertise across Stripe Radar, Adyen RevenueProtect, Checkout.com Risk, and custom internal tooling.</p>
                     <ul>
                         <li>Platform-agnostic rule sets (Stripe, Adyen, Checkout.com, and others)</li>
                         <li>Card security strategies (3DS, AVS, CVC)</li>
@@ -801,7 +875,7 @@
             <div class="service-item">
                 <div class="service-content">
                     <h3>Merchant Risk Monitoring</h3>
-                    <p>For marketplaces and platforms, we build monitoring logic that tracks sub-merchant health across your portfolio and flags risk before it becomes liability.</p>
+                    <p>For marketplaces and platforms, I build monitoring logic that tracks sub-merchant health across your portfolio and flags risk before it becomes liability.</p>
                     <ul>
                         <li>SQL queries for real-time risk dashboards</li>
                         <li>Slack integrations for instant fraud alerts</li>
@@ -822,7 +896,7 @@
                 <div class="service-content">
                     <h3>Operational Playbooks & Incident Response</h3>
                     <!-- Change 8: service 3 paragraph -->
-                    <p>Without documented protocols, every fraud incident becomes improvised. We build clear operating playbooks for incident response, disputes, and decisioning so your team can move quickly without making risk worse.</p>
+                    <p>Without documented protocols, every fraud incident becomes improvised. I build clear operating playbooks for incident response, disputes, and decisioning so your team can move quickly without making risk worse.</p>
                     <ul>
                         <li>Actionable Incident Response Plans for attacks</li>
                         <li>High-win-rate Dispute Evidence templates</li>
@@ -843,7 +917,7 @@
             <div class="service-item">
                 <div class="service-content">
                     <h3>Compliance & Regulatory Readiness</h3>
-                    <p>Embedding payments triggers real regulatory obligations. We build the compliance infrastructure — policies, frameworks, and documentation — so you stay audit-ready and processor-approved as you scale.</p>
+                    <p>Embedding payments triggers real regulatory obligations. I build the compliance infrastructure, policies, frameworks, and documentation, so you stay audit-ready and processor-approved as you scale.</p>
                     <ul>
                         <li>PCI DSS scope reduction & audit readiness</li>
                         <li>AML/BSA program design and policy review</li>
@@ -853,11 +927,11 @@
                 </div>
                 <div class="service-visual">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8;">
-                        <span class="code-ok">✔</span> PCI DSS SAQ-D — <span class="code-val">Scope Reduced</span><br>
-                        <span class="code-ok">✔</span> AML Policy — <span class="code-val">Reviewed &amp; Signed</span><br>
-                        <span class="code-ok">✔</span> KYC Flow — <span class="code-val">Documented</span><br>
-                        <span class="code-warn">⚠</span> Merchant TOS — <span style="color: #ffd700;">Needs Update</span><br>
-                        <span class="code-err">✘</span> BSA Program — <span style="color: #ff6b6b;">Not Implemented</span><br>
+                        <span class="code-ok">✔</span> PCI DSS SAQ-D: <span class="code-val">Scope Reduced</span><br>
+                        <span class="code-ok">✔</span> AML Policy: <span class="code-val">Reviewed &amp; Signed</span><br>
+                        <span class="code-ok">✔</span> KYC Flow: <span class="code-val">Documented</span><br>
+                        <span class="code-warn">⚠</span> Merchant TOS: <span style="color: #ffd700;">Needs Update</span><br>
+                        <span class="code-err">✘</span> BSA Program: <span style="color: #ff6b6b;">Not Implemented</span><br>
                         <br>
                         <span style="color: var(--text-muted);">// 2 items require immediate action</span>
                     </div>
@@ -875,37 +949,67 @@
                 <h2>What the work actually looks like</h2>
             </div>
             <!-- Change 9: trust note under heading -->
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic;">Representative examples based on real operator work. Company details have been anonymized.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic;">Representative examples based on real work. Company details have been anonymized.</p>
         </div>
     </section>
 
-    <!-- Case Study 1: EdTech -->
+    <!-- Case Study 1: Creator Payments -->
+    <section class="container">
+        <div class="case-study">
+            <div class="case-study-inner" style="padding: 0 3rem;">
+                <h4 style="color:var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem;">Series A Creator Payments Platform</h4>
+                <h2>Standing Up a Compliant Payments Program From Zero</h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin-top: 1rem; line-height: 1.8;">
+                    A Series A creator payments platform needed to launch payment acceptance and payouts but had no compliance foundation and no sponsor bank relationship in place.<br><br>
+                    I worked directly with their sponsor bank to build the payment acceptance program from the ground up, and project-managed the full onboarding, aligning the platform, the bank, and the processor through a process most early-stage teams underestimate. I authored the complete compliance stack: policies and procedures, the KYC and onboarding framework, and the operational documentation the bank required for approval.<br><br>
+                    To validate the program against NACHA Third-Party Sender requirements, I brought in an independent firm to audit everything I had built. The program passed, and I trained their staff on proper payment and risk procedures so it could run without me in the room.<br><br>
+                    The platform launched on schedule and processed over $100M in its first year, on compliance infrastructure built to scale with it.
+                </p>
+
+                <div class="case-stats">
+                    <div class="stat">
+                        <h4 style="font-size: 2.5rem;">$100M+</h4>
+                        <p>Processed in year one</p>
+                    </div>
+                    <div class="stat">
+                        <h4 style="font-size: 2.5rem;">0 to 1</h4>
+                        <p>Payments program built from scratch</p>
+                    </div>
+                    <div class="stat">
+                        <h4 style="font-size: 2.5rem;">NACHA</h4>
+                        <p>Third-Party Sender audit passed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study 2: EdTech -->
     <section class="container">
         <div class="case-study">
             <div class="case-study-inner" style="padding: 0 3rem;">
                 <h4 style="color:var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem;">Series C EdTech Platform</h4>
                 <h2>From Processor Flag to Clear Standing</h2>
                 <p style="color: var(--text-muted); max-width: 700px; margin-top: 1rem; line-height: 1.8;">
-                    <!-- Change 10: opening sentence -->
-                    A Series C EdTech platform came to us after a $200,000 fraud event and rising processor pressure.<br><br>
-                    They had 15,000+ sub-merchants processing tuition payments through their platform and hadn't properly KYC'd a single one. Fraudulent sub-merchants slipped through onboarding, ran chargebacks the platform was fully liable for, and triggered a processor flag for chargeback ratio violations. They had no internal risk function. No playbook. No one who owned it.<br><br>
-                    In 30 days, we built one.<br><br>
-                    We deployed a full sub-merchant underwriting framework, designed the KYC flow their onboarding team now runs on every new sub-merchant, and stood up a real-time risk monitoring dashboard their ops team uses daily. We trained their internal team on dispute response and chargeback defense and stayed on as their fractional Head of Risk to own incidents, processor relationships, and ongoing monitoring.<br><br>
-                    The chargeback flag was cleared. The losses stopped. They now have the infrastructure to scale without repeating it.
+                    A Series C EdTech platform came to me after a $200,000 fraud event and rising processor pressure.<br><br>
+                    They were onboarding sub-merchants to process tuition payments, but their underwriting was thin and inconsistently enforced. Bad actors slipped through onboarding, ran chargebacks the platform was fully liable for, and pushed their chargeback ratio past the threshold that triggers a processor review. They had no internal risk function, no playbook, and no one who owned it.<br><br>
+                    In 30 days, I built that function.<br><br>
+                    I designed a sub-merchant underwriting and KYC framework their onboarding team now enforces on every applicant, stood up a real-time risk monitoring dashboard their ops team uses daily, and trained their team on dispute response and chargeback defense. I stayed on as their fractional Head of Risk to own incidents, the processor relationship, and ongoing monitoring.<br><br>
+                    The flag was cleared, the losses stopped, and they now have the infrastructure to scale without repeating it.
                 </p>
 
                 <div class="case-stats">
-                    <div class="stat">
-                        <h4 style="font-size: 2.5rem;">$1B+</h4>
-                        <p>Annual volume secured</p>
-                    </div>
                     <div class="stat">
                         <h4 style="font-size: 2.5rem;">$200k+</h4>
                         <p>Fraudulent losses stopped</p>
                     </div>
                     <div class="stat">
                         <h4 style="font-size: 2.5rem;">30 days</h4>
-                        <p>Playbook deployed & team trained</p>
+                        <p>Processor flag cleared</p>
+                    </div>
+                    <div class="stat">
+                        <h4 style="font-size: 2.5rem;">0 to 1</h4>
+                        <p>Risk function built from scratch</p>
                     </div>
                 </div>
             </div>
@@ -916,9 +1020,9 @@
     <section class="engagement-section">
         <div class="container">
             <div style="text-align: center;">
-                <h2>How We Engage</h2>
+                <h2>How I Engage</h2>
                 <!-- Change 11: engagement intro -->
-                <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 1rem;">Two ways to work with FraudSignal, depending on your stage, team, and risk exposure.</p>
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 1rem;">Two ways to work with me, depending on your stage, team, and risk exposure.</p>
             </div>
 
             <div class="engagement-grid">
@@ -933,21 +1037,21 @@
                         <li>Custom rule recommendations mapped to your processor</li>
                         <li>Written remediation roadmap: quick-wins and 90-day action plan</li>
                     </ul>
-                    <a href="mailto:hello@fraudsignal.io" class="btn-outline" style="text-align: center; display: block;">Book an Audit</a>
+                    <a href="mailto:david@fraudsignal.io?subject=Risk%20Audit%20Request&body=Company%3A%0AProcessor%3A%0AMonthly%20payment%20volume%3A%0AWhere%20risk%20is%20showing%20up%3A%0A" class="btn-outline" style="text-align: center; display: block;">Book an Audit</a>
                 </div>
 
                 <!-- Card 2: Fractional Head of Risk -->
                 <div class="engagement-card featured">
                     <div class="engagement-card-label">Ongoing Retainer</div>
                     <h3>Fractional Head of Risk</h3>
-                    <p>We become your embedded risk function — managing fraud, compliance, and processor relationships on an ongoing basis so you can scale without hiring a full team.</p>
+                    <p>I become your embedded risk function, managing fraud, compliance, and processor relationships on an ongoing basis so you can scale without hiring a full team.</p>
                     <ul>
                         <li>Fraud rule management, continuous tuning & live incident response</li>
                         <li>Monthly risk reporting, processor relationship management & compliance monitoring</li>
                         <li>Embedded support for KYC design, dispute strategy & audit readiness</li>
                     </ul>
                     <!-- Change 12: retainer CTA -->
-                    <a href="mailto:hello@fraudsignal.io" class="btn" style="text-align: center; display: block;">Discuss a Retainer</a>
+                    <a href="mailto:david@fraudsignal.io?subject=Retainer%20Inquiry&body=Company%3A%0AProcessor%3A%0AMonthly%20payment%20volume%3A%0AWhere%20risk%20is%20showing%20up%3A%0A" class="btn" style="text-align: center; display: block;">Discuss a Retainer</a>
                 </div>
 
             </div>
@@ -956,13 +1060,14 @@
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- Contact -->
     <section id="contact" class="cta-section">
         <div class="container">
             <h2>Ready to secure your growth?</h2>
-            <a href="mailto:hello@fraudsignal.io" class="btn" style="font-size: 1.2rem; padding: 16px 32px;">Request a Risk Review</a>
-            <!-- Change 13: line under CTA button -->
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1.5rem;">Tell us your processor, payment volume, and where risk is showing up.</p>
+            <!-- Change 13: line under heading -->
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: -1rem;">Tell me your processor, payment volume, and where risk is showing up.</p>
+
+            <a href="mailto:david@fraudsignal.io?subject=Risk%20Review%20Request&body=Company%3A%0AProcessor%3A%0AMonthly%20payment%20volume%3A%0AWhere%20risk%20is%20showing%20up%3A%0A" class="btn" style="font-size: 1.1rem; padding: 16px 32px; margin-top: 2rem; display: inline-block;">Request a Risk Review</a>
         </div>
     </section>
 
@@ -981,6 +1086,7 @@
             </div>
         </div>
     </footer>
+
 
 </body>
 </html>
