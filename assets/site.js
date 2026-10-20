@@ -12,12 +12,59 @@
     if (window.plausible) window.plausible(name, { props: props });
   }
 
-  // Every CTA opens an email with the offer in the subject line
+  // Every CTA opens a small picker: Gmail, Outlook, default mail app, or copy.
+  // A bare mailto: link does nothing for visitors without a desktop mail app.
+  var dialog = null;
+  function picker(subject) {
+    if (!dialog) {
+      dialog = document.createElement('dialog');
+      dialog.className = 'mail-dialog';
+      dialog.setAttribute('aria-labelledby', 'mail-dialog-title');
+      dialog.innerHTML =
+        '<button class="x" type="button" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.75" fill="none"/></svg></button>' +
+        '<div class="inner">' +
+        '<div class="label sm">Book a call</div>' +
+        '<h2 class="h3" id="mail-dialog-title">Email me to set up a time.</h2>' +
+        '<div class="addr">' + EMAIL + '</div>' +
+        '<div class="opts">' +
+        '<a class="opt primary" data-k="gmail" target="_blank" rel="noopener">Gmail</a>' +
+        '<a class="opt" data-k="outlook" target="_blank" rel="noopener">Outlook</a>' +
+        '<a class="opt" data-k="app">Mail app</a>' +
+        '<button class="opt" type="button" data-k="copy">Copy address</button>' +
+        '</div></div>';
+      document.body.appendChild(dialog);
+      dialog.querySelector('.x').addEventListener('click', function () { dialog.close(); });
+      dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
+      dialog.querySelectorAll('a.opt').forEach(function (a) {
+        a.addEventListener('click', function () {
+          track('Email client', { client: a.getAttribute('data-k') });
+          setTimeout(function () { dialog.close(); }, 100);
+        });
+      });
+      var copyBtn = dialog.querySelector('[data-k="copy"]');
+      copyBtn.addEventListener('click', function () {
+        var done = function () { copyBtn.textContent = 'Copied'; track('Email client', { client: 'copy' }); };
+        if (navigator.clipboard) navigator.clipboard.writeText(EMAIL).then(done, function () {});
+        else { var r = document.createRange(); r.selectNodeContents(dialog.querySelector('.addr')); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
+      });
+    }
+    var su = encodeURIComponent(subject);
+    var to = encodeURIComponent(EMAIL);
+    dialog.querySelector('[data-k="gmail"]').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + to + '&su=' + su;
+    dialog.querySelector('[data-k="outlook"]').href = 'https://outlook.office.com/mail/deeplink/compose?to=' + to + '&subject=' + su;
+    dialog.querySelector('[data-k="app"]').href = 'mailto:' + EMAIL + '?subject=' + su;
+    dialog.querySelector('[data-k="copy"]').textContent = 'Copy address';
+    if (dialog.showModal) dialog.showModal(); else location.href = 'mailto:' + EMAIL + '?subject=' + su;
+  }
+
   document.querySelectorAll('[data-offer]').forEach(function (el) {
     var offer = el.getAttribute('data-offer');
-    el.setAttribute('href', 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(SUBJECTS[offer] || SUBJECTS.general));
-    el.addEventListener('click', function () {
+    var subject = SUBJECTS[offer] || SUBJECTS.general;
+    el.setAttribute('href', 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject));
+    el.addEventListener('click', function (e) {
       track('Book a call click', { offer: offer, location: el.getAttribute('data-loc') || '' });
+      e.preventDefault();
+      picker(subject);
     });
   });
 
