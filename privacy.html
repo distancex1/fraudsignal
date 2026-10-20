@@ -1,252 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | FraudSignal</title>
-    <meta name="description" content="FraudSignal privacy policy — how we collect, use, and protect your information.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy | FraudSignal</title>
+<meta name="description" content="How FraudSignal collects, uses, and protects information on fraudsignal.io.">
+<link rel="canonical" href="https://fraudsignal.io/privacy">
+<meta name="theme-color" content="#F6F4EF">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
-    <style>
-        :root {
-            --bg-dark: #0A2540;
-            --bg-darker: #051829;
-            --accent: #00D4FF;
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --card-border: rgba(255, 255, 255, 0.08);
-            --spacing-container: 780px;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;family=Newsreader:opsz,wght@6..72,500&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
 
-        html { scroll-behavior: smooth; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a { text-decoration: none; color: inherit; transition: color 0.2s; }
-        a:hover { color: var(--accent); }
-
-        .container {
-            max-width: var(--spacing-container);
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header */
-        header {
-            padding: 1.25rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(10, 37, 64, 0.75);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            letter-spacing: -0.03em;
-            color: #fff;
-        }
-
-        .logo svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--accent);
-            filter: drop-shadow(0 0 8px rgba(0,212,255,0.5));
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            color: var(--accent);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent);
-            background: rgba(0, 212, 255, 0.05);
-        }
-
-        /* Content */
-        .policy-wrap {
-            padding: 6rem 0 8rem;
-        }
-
-        .policy-wrap h1 {
-            font-size: 2.75rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .effective-date {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .policy-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .policy-section h2 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #fff;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.75rem;
-        }
-
-        .policy-section p {
-            color: var(--text-muted);
-            font-size: 0.975rem;
-            line-height: 1.8;
-        }
-
-        .policy-section a {
-            color: var(--accent);
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--card-border);
-            padding: 3rem 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            background: var(--bg-darker);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover { color: #fff; }
-    </style>
+<script defer data-domain="fraudsignal.io" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-    <!-- Nav -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="index-v4.html" class="logo">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/>
-                    </svg>
-                    FraudSignal
-                </a>
-                <a href="mailto:hello@fraudsignal.io" class="btn-outline">Book a Call</a>
-            </nav>
-        </div>
-    </header>
+<header class="site-header">
+<div class="wrap nav">
+<a class="wordmark" href="/" aria-label="FraudSignal home">FraudSignal</a>
+<div class="nav-right">
+<ul class="navlinks" id="navmenu">
+<li><a href="/#ai">AI risk</a></li>
+<li><a href="/#work">Work</a></li>
+<li><a href="/#engage">Engagements</a></li>
+</ul>
+<a class="btn" href="mailto:david@fraudsignal.io" data-offer="general" data-loc="nav">Book a call</a>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Open menu">
+<svg class="open-i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.75" fill="none"/></svg>
+<svg class="close" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.75" fill="none"/></svg>
+</button>
+</div>
+</div>
+</header>
 
-    <!-- Policy Content -->
-    <main class="policy-wrap">
-        <div class="container">
-            <h1>Privacy Policy</h1>
-            <p class="effective-date">Effective Date: January 1, 2026</p>
+<main id="main" class="wrap doc" style="padding-top:72px;padding-bottom:112px">
+<div class="stack g16" style="padding-bottom:40px">
+<div class="label">Effective October 2026</div>
+<h1 class="h1 page">Privacy Policy</h1>
+</div>
 
-            <div class="policy-section">
-                <p>FraudSignal ("we," "us," or "our") operates fraudsignal.io. This policy explains what information we collect, how we use it, and your rights regarding that information.</p>
-            </div>
+<section class="doc-section stack g14 body">
+<p>FraudSignal ("we," "us," or "our") operates fraudsignal.io. This policy explains what information we collect, how we use it, and your rights regarding that information.</p>
+</section>
 
-            <div class="policy-section">
-                <h2>What We Collect</h2>
-                <p>When you contact us via email or a contact form, we collect the information you voluntarily provide — typically your name, email address, and company name. If you visit our site, standard server logs and analytics tools may collect your IP address, browser type, pages visited, and referring URL.</p>
-            </div>
+<section class="doc-section stack g14 body">
+<h2 class="h2">What we collect</h2>
+<p>When you email us, we collect the information you provide, typically your name, email address, and company name. When you visit the site, our analytics tool records aggregate data such as pages visited, referring site, campaign tags, browser type, and country.</p>
+</section>
 
-            <div class="policy-section">
-                <h2>How We Use It</h2>
-                <p>We use the information you provide solely to respond to your inquiry and evaluate whether we can help you. We do not sell, rent, or share your personal information with third parties for marketing purposes.</p>
-            </div>
+<section class="doc-section stack g14 body">
+<h2 class="h2">How we use it</h2>
+<p>We use the information you provide solely to respond to your inquiry and evaluate whether we can help you. We do not sell, rent, or share your personal information with third parties for marketing purposes.</p>
+</section>
 
-            <div class="policy-section">
-                <h2>Analytics</h2>
-                <p>This site may use standard web analytics tools to understand traffic patterns. This data is aggregated and not tied to any individual. You can opt out of analytics tracking via your browser settings or a tool like uBlock Origin.</p>
-            </div>
+<section class="doc-section stack g14 body">
+<h2 class="h2">Analytics</h2>
+<p>This site uses Plausible Analytics, which does not use cookies and does not collect personal data. Traffic data is aggregated and not tied to any individual.</p>
+</section>
 
-            <div class="policy-section">
-                <h2>Cookies</h2>
-                <p>This site does not use tracking cookies for advertising. Basic session or analytics cookies may be set by third-party tools we use to operate the site.</p>
-            </div>
+<section class="doc-section stack g14 body">
+<h2 class="h2">Cookies</h2>
+<p>This site does not set advertising or tracking cookies.</p>
+</section>
 
-            <div class="policy-section">
-                <h2>Data Retention</h2>
-                <p>Contact inquiries are retained only as long as necessary to manage the business relationship. You can request deletion of your information at any time.</p>
-            </div>
+<section class="doc-section stack g14 body">
+<h2 class="h2">Data retention</h2>
+<p>Contact inquiries are retained only as long as necessary to manage the business relationship. You can request deletion of your information at any time.</p>
+</section>
 
-            <div class="policy-section">
-                <h2>Your Rights</h2>
-                <p>Depending on where you are located, you may have rights under applicable privacy law including GDPR (EU/UK) and CCPA (California) to access, correct, or delete personal information we hold about you. To exercise any of these rights, contact us at the address below.</p>
-            </div>
+<section class="doc-section stack g14 body">
+<h2 class="h2">Your rights</h2>
+<p>Depending on where you are located, you may have rights under applicable privacy law including GDPR (EU/UK) and CCPA (California) to access, correct, or delete personal information we hold about you. To exercise any of these rights, contact us at the address below.</p>
+</section>
 
-            <div class="policy-section">
-                <h2>Third-Party Links</h2>
-                <p>Our site may link to third-party websites. We are not responsible for the privacy practices of those sites and encourage you to review their policies directly.</p>
-            </div>
+<section class="doc-section stack g14 body">
+<h2 class="h2">Third-party links</h2>
+<p>Our site may link to third-party websites. We are not responsible for the privacy practices of those sites and encourage you to review their policies directly.</p>
+</section>
 
-            <div class="policy-section">
-                <h2>Changes to This Policy</h2>
-                <p>We may update this policy periodically. The effective date at the top of this page will reflect the most recent revision. Continued use of the site after any update constitutes acceptance of the revised policy.</p>
-            </div>
+<section class="doc-section stack g14 body">
+<h2 class="h2">Changes to this policy</h2>
+<p>We may update this policy periodically. The effective date at the top of this page will reflect the most recent revision. Continued use of the site after any update constitutes acceptance of the revised policy.</p>
+</section>
 
-            <div class="policy-section">
-                <h2>Contact</h2>
-                <p>For privacy-related questions or requests:<br>
-                FraudSignal<br>
-                <a href="mailto:hello@fraudsignal.io">hello@fraudsignal.io</a></p>
-            </div>
-        </div>
-    </main>
+<section class="doc-section stack g14 body">
+<h2 class="h2">Contact</h2>
+<p>For privacy-related questions or requests:<br>FraudSignal<br><a href="mailto:david@fraudsignal.io">david@fraudsignal.io</a></p>
+</section>
+</main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2026 FraudSignal. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="privacy.html">Privacy Policy</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+<footer class="site-footer dark">
+<div class="wrap foot">
+<span><span class="brand">FraudSignal</span> · Risk leadership for platforms that run payments</span>
+<span class="foot-links"><span>© 2026 FraudSignal</span><a href="/privacy">Privacy Policy</a></span>
+</div>
+</footer>
 
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
