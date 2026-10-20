@@ -234,3 +234,17 @@ a:hover{color:var(--signal-dark)}
 .mail-dialog .opt.primary{background:var(--signal);border-color:var(--signal);color:var(--white)}
 .mail-dialog .opt.primary:hover{background:var(--signal-dark);color:var(--white)}
 .mail-dialog .x{position:absolute;top:10px;right:10px;background:none;border:0;padding:8px;cursor:pointer;color:var(--ink-muted)}
+
+/* Agent policy table: stacked rows on mobile, table on desktop */
+@media (max-width:768px){
+  .policy table{min-width:0}
+  .policy thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .policy tbody,.policy tr,.policy td{display:block}
+  .policy table{border-top:1px solid var(--ink)}
+  .policy tr{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:4px;padding:14px 0;border-bottom:1px solid var(--paper-2)}
+  .policy tr:last-child{border-bottom:0}
+  .policy td{padding:0;border:0}
+  .policy td:first-child{font-weight:600}
+  .policy td:nth-child(2){justify-self:end}
+  .policy td:last-child{grid-column:1 / -1;font-size:15px}
+}
