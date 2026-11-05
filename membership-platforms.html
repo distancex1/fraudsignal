@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where Membership Payment Platforms Get Exposed | FraudSignal</title>
+<meta name="description" content="The seven gaps I see most often on membership platforms running recurring card and bank debit payments across the US, Canada, and Europe.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F4EF">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FraudSignal">
+<meta property="og:url" content="https://fraudsignal.io/membership-platforms">
+<meta property="og:title" content="Where Membership Payment Platforms Get Exposed">
+<meta property="og:description" content="The seven gaps I see most often on platforms running recurring card and bank debit payments across the US, Canada, and Europe.">
+<meta property="og:image" content="https://fraudsignal.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Where Membership Payment Platforms Get Exposed">
+<meta name="twitter:description" content="The seven gaps I see most often on platforms running recurring card and bank debit payments.">
+<meta name="twitter:image" content="https://fraudsignal.io/assets/og-image.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;family=Newsreader:opsz,wght@6..72,500&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.site-header{position:static}
+.memo-top{padding:56px 0 48px}
+.gap{padding:36px 0;border-top:1px solid var(--rule)}
+.gap .h3{font-size:26px}
+.gap p,.doc-section p{color:var(--ink-2)}
+.gap strong,.signoff strong{color:var(--ink);font-weight:600}
+.memo-questions{margin:0;padding-left:22px;color:var(--ink-2);display:flex;flex-direction:column;gap:8px}
+.memo-end{padding-bottom:80px}
+.signoff{color:var(--ink-2)}
+.signoff a{overflow-wrap:anywhere}
+@media (max-width:900px){.memo-top{padding:32px 0 40px}.gap .h3{font-size:24px}}
+</style>
+
+<script defer data-domain="fraudsignal.io" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+<div class="wrap nav">
+<a class="wordmark" href="/" aria-label="FraudSignal home">FraudSignal</a>
+</div>
+</header>
+
+<main id="main">
+<article class="wrap doc">
+
+<div class="memo-top stack g24">
+<h1 class="h1 page">Where Membership Payment Platforms Get Exposed</h1>
+<div class="label"><time datetime="2026-09-01">Sep 1, 2026</time></div>
+<p class="lede">Membership platforms that bill on behalf of their customers carry the losses when something goes wrong: a takeover, a fake business, a closed location, a reversed debit. These are the seven gaps I see most often on platforms running recurring card and bank debit payments across the US, Canada, and Europe.</p>
+</div>
+
+<section class="gap stack g14">
+<h2 class="h3">1. Business closures with prepaid memberships</h2>
+<p><strong>What happens:</strong> A location sells annual or prepaid memberships, then closes. Members dispute for services they never received.</p>
+<p><strong>What it costs:</strong> Disputes land after the money has already been paid out, and the negative balance usually ends up with the platform.</p>
+<p><strong>What closes it:</strong> Credit limits tied to prepaid exposure, reserves where the risk warrants them, and early warning signs of a business in trouble.</p>
+</section>
+
+<section class="gap stack g14">
+<h2 class="h3">2. Nobody checking who's onboarding</h2>
+<p><strong>What happens:</strong> Most SaaS platforms approve new businesses on a form and a document. Fraudsters sign up as a fake business to run stolen cards, or use member signup and online checkout to test cards in bulk.</p>
+<p><strong>What it costs:</strong> Chargebacks on cards you never should have charged, network fines, and a processor asking why.</p>
+<p><strong>What closes it:</strong> Screening built on how a new account actually uses the platform, alongside identity, phone, email, and web presence checks. I've built AI agents that do this and clear most good accounts automatically, so the team only reviews the risky ones.</p>
+</section>
+
+<section class="gap stack g14">
+<h2 class="h3">3. Bank debits that reverse months after payout</h2>
+<p><strong>What happens:</strong> Each bank debit system has its own clock. Canadian personal PADs can be reimbursed for up to 90 days, SEPA Core debits for 8 weeks with no questions asked, and ACH has Nacha's return thresholds.</p>
+<p><strong>What it costs:</strong> Reversals that arrive long after the business was paid, against a balance that may no longer be there.</p>
+<p><strong>What closes it:</strong> Return monitoring by business and by debit system, with payout timing set to match each one's reversal window and reserves where they make sense.</p>
+</section>
+
+<section class="gap stack g14">
+<h2 class="h3">4. Account takeover on the business side</h2>
+<p><strong>What happens:</strong> Someone gets into a business owner's or staff account, changes the payout bank details, and the next deposit goes to them. Weak staff permissions make it easier.</p>
+<p><strong>What it costs:</strong> The business loses a payout it may never get back. The platform loses the customer, takes the blame, and spends weeks on recovery and support.</p>
+<p><strong>What closes it:</strong> Layered controls on who can change sensitive data, step-up verification on bank changes, a hold on the first payout after a change, and monitoring for unusual activity behind the scenes.</p>
+</section>
+
+<section class="gap stack g14">
+<h2 class="h3">5. Recurring billing disputes and network thresholds</h2>
+<p><strong>What happens:</strong> Recurring memberships draw cancellation disputes, and the first charges after moving members from another system often draw "I don't recognize this" disputes. Visa's 1.5% VAMP threshold applies to every business on your platform.</p>
+<p><strong>What it costs:</strong> Network fines, payout holds, and a processor relationship on watch.</p>
+<p><strong>What closes it:</strong> Weekly dispute monitoring by business against network thresholds, with clear billing descriptors and cancellation flows.</p>
+</section>
+
+<section class="gap stack g14">
+<h2 class="h3">6. Recovery tools that break the rules</h2>
+<p><strong>What happens:</strong> Smart retries and automated collections recover real revenue, but Visa and Mastercard both cap and charge for excessive retries. In the US, AI voice calls need prior consent under the TCPA.</p>
+<p><strong>What it costs:</strong> Network fees on every excessive retry, and consumer protection exposure on collections.</p>
+<p><strong>What closes it:</strong> Retry logic built around network rules and decline codes, and a compliance review of collections scripts and consent.</p>
+</section>
+
+<section class="gap stack g14">
+<h2 class="h3">7. Nobody watching total loss and exposure</h2>
+<p><strong>What happens:</strong> Chargebacks sit with support, returns with finance, and fraud with engineering. No one adds them up, and no one tracks what the platform stands to lose if its riskiest businesses failed tomorrow.</p>
+<p><strong>What it costs:</strong> Losses grow quietly until they show up in the margin, or until the processor asks a question nobody can answer.</p>
+<p><strong>What closes it:</strong> One monthly report to leadership covering realized losses by type, open exposure from prepaid value, pending reversals, and negative balances, and the trend. One person accountable for the number.</p>
+</section>
+
+<section class="doc-section stack g24">
+<h2 class="h2">Questions to ask your team this week</h2>
+<ol class="memo-questions">
+<li>What happens when a business changes its payout bank account?</li>
+<li>How do we know a new business is real before it starts taking payments?</li>
+<li>How much prepaid membership value is sitting on our platform right now, and with whom?</li>
+<li>What are our return rates by debit system, and how long after payout can each one reverse?</li>
+<li>Who signed off on our retry and collections rules?</li>
+</ol>
+<p>If more than two of these don't have a clear answer, the exposure is worth sizing.</p>
+</section>
+
+<section class="doc-section memo-end stack g24">
+<h2 class="h2">Next step</h2>
+<p>If you want help with any of this, or want to talk through your platform specifically, I'm happy to do a free 30-minute call.</p>
+<div class="actions">
+<a class="btn lg" href="mailto:david@fraudsignal.io" data-offer="general" data-loc="membership-next-step">Book a free 30-minute call</a>
+</div>
+<p class="signoff"><strong>Dave</strong>, Fractional Head of Risk, FraudSignal<br><a href="mailto:david@fraudsignal.io">david@fraudsignal.io</a> · <a href="https://fraudsignal.io">fraudsignal.io</a></p>
+</section>
+
+</article>
+</main>
+
+<footer class="site-footer dark">
+<div class="wrap foot">
+<span><span class="brand">FraudSignal</span> · Risk leadership for platforms that run payments</span>
+<span class="foot-links"><span>© 2026 FraudSignal</span><a href="/privacy">Privacy Policy</a></span>
+</div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
